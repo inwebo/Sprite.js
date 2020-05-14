@@ -13,10 +13,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const spriteCanvas  = document.getElementById('sprite');
     const renderSprite  = new RenderSprite(spriteCanvas);
 
-    // Origin 695 x 219
-    // Dimension 64 x 80
-
-
     img.onload = () => {
         rendererSheet.draw(img);
 
@@ -29,17 +25,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         sprite.setTransparencyColor(255,255,255);
         sprite.applyTransparency();
-
-        // const data = imageData.data;
-        //
-        // for (let i = 0; i < data.length; i += 4) {
-        //     data[i + 0] = 0;    // R value
-        //     data[i + 1] = 190;  // G value
-        //     data[i + 2] = 0;    // B value
-        //     data[i + 3] = 0;    // A value
-        // }
-        // const clamp = Uint8ClampedArray.from(imageData.data);
-        // imageData = new ImageData(clamp);
 
         renderSprite.draw(sprite);
     };
