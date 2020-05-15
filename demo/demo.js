@@ -38,7 +38,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const sprite = new Sprite(imageData);
 
         sprite.setTransparencyColor(255,255,255);
-        sprite.applyTransparency();
 
         renderSprite.draw(sprite);
     };
