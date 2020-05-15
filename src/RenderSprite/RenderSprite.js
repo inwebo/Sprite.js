@@ -12,6 +12,11 @@ export default class RenderSprite extends Renderer2D{
          * @type {Sprite}
          */
         const s = subject[0][0];
+
+        if(s.hasTransparencyColor()) {
+            s.applyTransparency();
+        }
+
         this.getCtx().putImageData(s.imgData,0,0);
     }
 }
