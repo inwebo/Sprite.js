@@ -7,10 +7,10 @@ const spriteSheet         = './zelda3.png';
 const animatedSpriteSheet = './doom2.png';
 
 const img         = new Image();
-img.src           = spriteSheet;
+
 
 const animatedImg = new Image();
-animatedImg.src   = animatedSpriteSheet;
+
 
 window.addEventListener("DOMContentLoaded", (event) => {
     // Sheet
@@ -43,6 +43,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         renderSprite.draw(sprite);
     };
 
+    img.src = spriteSheet;
 
     animatedImg.onload = () => {
         rendererAnimatedSheet.draw(animatedImg);
@@ -67,4 +68,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
             animatedSprite.step();
         }, 200);
     }
+
+    animatedImg.src = animatedSpriteSheet;
 });
