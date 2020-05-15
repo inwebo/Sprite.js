@@ -29,6 +29,14 @@ export default class Rgb extends Vector2D {
     }
 
     /**
+     * @param {Rgb} vector
+     * @return {boolean}
+     */
+    equals(vector) {
+        return super.equals(vector) && this._z === vector.getZ();
+    }
+
+    /**
      * @param {Vector2D} min
      * @param {Vector2D} max
      * @param {boolean} strict
