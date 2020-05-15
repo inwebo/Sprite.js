@@ -3,9 +3,8 @@ import Sprite from "../Sprite/Sprite";
 export default class AnimatedSprite extends Sprite {
 
     constructor(map) {
-        super();
+        super(map[0]);
         this._map          = map;
-        this._imgData      = map[0];
         this._currentFrame = 0;
     }
 
