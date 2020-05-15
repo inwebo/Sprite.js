@@ -50,10 +50,9 @@ export default class Sprite {
     }
 
     applyTransparency() {
-        if(this.hasTransparencyColor) {
+        if(this.hasTransparencyColor()) {
             for (let i = 0; i < this._imgData.data.length; i += 4) {
                 const inputRgb = new Rgb(this._imgData.data[i], this._imgData.data[i + 1], this._imgData.data[i + 2]);
-
                 if (this.getTransparencyColor().equals(inputRgb)) {
                     this._imgData.data[i + 3] = 0;
                 }
