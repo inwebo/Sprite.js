@@ -48,10 +48,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     animatedImg.onload = () => {
         rendererAnimatedSheet.draw(animatedImg);
 
-        const frame1 = rendererAnimatedSheet.getCtx().getImageData(44, 33, 41, 57);
-        const frame2 = rendererAnimatedSheet.getCtx().getImageData(44, 123, 39, 56);
-        const frame3 = rendererAnimatedSheet.getCtx().getImageData(44, 213, 39, 56);
-        const frame4 = rendererAnimatedSheet.getCtx().getImageData(44, 306, 37, 56);
+        const frame1 = rendererAnimatedSheet.getCtx().getImageData(44, 33, 40, 57);
+        const frame2 = rendererAnimatedSheet.getCtx().getImageData(44, 123, 38, 56);
+        const frame3 = rendererAnimatedSheet.getCtx().getImageData(44, 213, 38, 60);
+        const frame4 = rendererAnimatedSheet.getCtx().getImageData(44, 306, 36, 57);
 
         const map = [];
         map.push(frame1);
@@ -63,7 +63,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         animatedSprite.setTransparencyColor(82, 255, 254);
 
         setInterval(() => {
-            animatedSprite.applyTransparency();
             renderFrame1.draw(animatedSprite);
             animatedSprite.step();
         }, 200);
