@@ -1,4 +1,13 @@
+import Rgb from "../Rgb/Rgb";
+
 export default class Sprite {
+
+    /**
+     * @return {Rgb|null}
+     */
+    getTransparencyColor() {
+        return this._transparentColor;
+    }
 
     /**
      * @return {ImageData}
@@ -12,7 +21,7 @@ export default class Sprite {
      */
     constructor(imgData) {
         this._imgData          = imgData;
-        this._transparentColor = [];
+        this._transparentColor = null;
     }
 
     /**
@@ -21,24 +30,31 @@ export default class Sprite {
      * @param {Number} b
      */
     setTransparencyColor(r, g ,b) {
-        this._transparentColor = [];
-        this._transparentColor.push(r);
-        this._transparentColor.push(g);
-        this._transparentColor.push(b);
+        this._transparentColor = new Rgb(r, g, b);
+    }
+
+    /**
+     * @return {Sprite}
+     */
+    resetTransparencyColor() {
+        this._transparentColor = null;
+
+        return this;
+    }
+
+    /**
+     * @return {boolean}
+     */
+    hasTransparencyColor() {
+        return !(this._transparentColor == null);
     }
 
     applyTransparency() {
-        if(this._transparentColor.length === 3) {
+        if(this.hasTransparencyColor) {
             for (let i = 0; i < this._imgData.data.length; i += 4) {
-                const r = this._imgData.data[i];
-                const g = this._imgData.data[i + 1];
-                const b = this._imgData.data[i + 2];
+                const inputRgb = new Rgb(this._imgData.data[i], this._imgData.data[i + 1], this._imgData.data[i + 2]);
 
-                if (
-                    r === this._transparentColor[0] &&
-                    g === this._transparentColor[1] &&
-                    b === this._transparentColor[2]
-                ) {
+                if (this.getTransparencyColor().equals(inputRgb)) {
                     this._imgData.data[i + 3] = 0;
                 }
             }
