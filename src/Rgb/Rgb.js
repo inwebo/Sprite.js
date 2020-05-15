@@ -28,6 +28,12 @@ export default class Rgb extends Vector2D {
         this.clamp(new Vector2D(0,0), new Vector2D(256, 256))
     }
 
+    /**
+     * @param {Vector2D} min
+     * @param {Vector2D} max
+     * @param {boolean} strict
+     * @return {Rgb}
+     */
     clamp(min, max, strict = true) {
         super.clamp(min, max, strict);
 
@@ -37,16 +43,6 @@ export default class Rgb extends Vector2D {
             }
 
             if(this.getZ() > max.getY()) {
-                this.setZ(max.getY());
-            }
-        }
-
-        if(strict === false) {
-            if(this.getZ() <= min.getX()) {
-                this.setZ(min.getX());
-            }
-
-            if(this.getZ() >= max.getY()) {
                 this.setZ(max.getY());
             }
         }
