@@ -14,7 +14,7 @@ export default class AnimatedSprite extends Sprite {
         if(this._currentFrame > this._map.length - 1) {
             this._currentFrame = 0;
         }
-        console.log(this._currentFrame);
+
         this._imgData       = this._map[this._currentFrame];
     }
 }
