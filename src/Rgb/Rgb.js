@@ -1,43 +1,56 @@
-export default class Rgb {
+import Vector2D from "@inwebo/vector/src/Vector2D";
 
-    _validateValue(color, value) {
-        if(value > 255 || isNaN(value)) {
-            throw `${color} is not valid ! ${value} > 255`;
+export default class Rgb extends Vector2D {
+
+    /**
+     * @param {Number} value
+     */
+    setZ(value) {
+        this._z = value;
+    }
+
+    /**
+     * @return {Number}
+     */
+    getZ() {
+        return this._z;
+    }
+
+    /**
+     * @param {Number} x
+     * @param {Number} y
+     * @param {Number} z
+     */
+    constructor(x = 0, y = 0, z = 0) {
+        super(x, y);
+        this._z = z;
+
+        this.clamp(new Vector2D(0,0), new Vector2D(256, 256))
+    }
+
+    clamp(min, max, strict = true) {
+        super.clamp(min, max, strict);
+
+        if(strict === true) {
+            if(this.getZ() < min.getX()) {
+                this.setZ(min.getX());
+            }
+
+            if(this.getZ() > max.getY()) {
+                this.setZ(max.getY());
+            }
         }
-    }
 
-    /**
-     * @param {Number} value <= 255
-     */
-    set r(value) {
-        this._validateValue('red', value);
-        this._r = value;
-    }
+        if(strict === false) {
+            if(this.getZ() <= min.getX()) {
+                this.setZ(min.getX());
+            }
 
-    /**
-     * @param {Number} value <= 255
-     */
-    set g(value) {
-        this._validateValue('green', value);
-        this._g = value;
-    }
+            if(this.getZ() >= max.getY()) {
+                this.setZ(max.getY());
+            }
+        }
 
-    /**
-     * @param {Number} value <= 255
-     */
-    set b(value) {
-        this._validateValue('blue', value);
-        this._b = value;
-    }
-
-    /**
-     * @param {Number} r
-     * @param {Number} g
-     * @param {Number} b
-     */
-    constructor(r, g, b) {
-        this._r = r;
-        this._g = g;
-        this._b = b;
+        return this;
     }
 }
