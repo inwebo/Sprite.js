@@ -1,2 +1,3 @@
-import SpriteSheet from "./SpriteSheet/SpriteSheet";
+import AnimatedSprite from "./AnimatedSprite/AnimatedSprite";
+import Rgb from "./Rgb/Rgb";
 import Sprite from "./Sprite/Sprite";
