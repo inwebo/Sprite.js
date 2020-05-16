@@ -11,6 +11,14 @@ export default class SpriteMap {
     }
 
     /**
+     * @param {String} spriteName
+     * @return {Sprite|AnimatedSprite}
+     */
+    get(spriteName) {
+        return this._map.get(spriteName);
+    }
+
+    /**
      * @param {Object} json
      * @param {CanvasRenderingContext2D} context Original canvas context
      */
