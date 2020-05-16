@@ -2,6 +2,7 @@ import RenderSheet    from "../src/RenderSheet/RenderSheet";
 import RenderSprite   from "../src/RenderSprite/RenderSprite";
 import Sprite         from "../src/Sprite/Sprite";
 import AnimatedSprite from "../src/AnimatedSprite/AnimatedSprite";
+import SpriteMap from "../src/SpriteMap/SpriteMap";
 
 const sheetSrc    = './doom.png';
 const spriteSheet = new Image();
@@ -60,4 +61,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     };
 
     spriteSheet.src = sheetSrc;
+
+    fetch("doom.json")
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            try {
+                const spriteMap = new SpriteMap(json, sheetRenderer.getCtx());
+            } catch (e) {
+                console.log(e);
+            }
+        });
 });
