@@ -1,71 +1,63 @@
-import RenderSheet from "../src/RenderSheet/RenderSheet";
-import RenderSprite from "../src/RenderSprite/RenderSprite";
-import Sprite from "../src/Sprite/Sprite";
+import RenderSheet    from "../src/RenderSheet/RenderSheet";
+import RenderSprite   from "../src/RenderSprite/RenderSprite";
+import Sprite         from "../src/Sprite/Sprite";
 import AnimatedSprite from "../src/AnimatedSprite/AnimatedSprite";
 
-const spriteSheet         = './zelda3.png';
-const animatedSpriteSheet = './doom2.png';
-
-const img         = new Image();
-
-
-const animatedImg = new Image();
+const sheetSrc    = './doom.png';
+const spriteSheet = new Image();
 
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    // Sheet
-    const sheetCanvas   = document.getElementById('sprite-sheet');
-    const rendererSheet = new RenderSheet(sheetCanvas);
-    // Sprite
-    const spriteCanvas  = document.getElementById('sprite');
-    const renderSprite  = new RenderSprite(spriteCanvas);
 
-    // Sheet
-    const animatedSpriteCanvas  = document.getElementById('animated-sprite-sheet');
-    const rendererAnimatedSheet = new RenderSheet(animatedSpriteCanvas);
-    // Sprite
-    const frame1Canvas  = document.getElementById('animated-sprite');
-    const renderFrame1  = new RenderSprite(frame1Canvas);
+    //Sheet canvas renderer
+    const sheetRenderer = new RenderSheet(document.getElementById('sheetCanvas'));
 
-    img.onload = () => {
-        rendererSheet.draw(img);
+    //Sprite renderer
+    const spriteRenderer = new RenderSprite(document.getElementById('sprite'));
 
-        /**
-         * @type {ImageData}
-         */
-        const imageData = rendererSheet.getCtx().getImageData(695, 219, 64, 80);
+    //Sprite whith transparency renderer
+    const transparencyRenderer = new RenderSprite(document.getElementById('spriteTransparency'));
 
-        const sprite = new Sprite(imageData);
+    //Animated sprite renderer
+    const spriteTransparencyAnimatedRenderer = new RenderSprite(document.getElementById('spriteTransparencyAnimated'));
 
-        sprite.setTransparencyColor(255,255,255);
+    // Set callback, sprite sheet image is loaded and available
+    spriteSheet.onload = (e) => {
+        // Draw to sheet canvas
+        sheetRenderer.draw(spriteSheet);
 
-        renderSprite.draw(sprite);
-    };
+        // Pick up first frame from sheet canvas
+        const frame1 = sheetRenderer.getCtx().getImageData(5, 5, 42, 60);
+        const sprite = new Sprite(frame1);
 
-    img.src = spriteSheet;
+        spriteRenderer.draw(sprite);
 
-    animatedImg.onload = () => {
-        rendererAnimatedSheet.draw(animatedImg);
+        // Set up transparency color
+        sprite.setTransparencyColor(255,0,255);
 
-        const frame1 = rendererAnimatedSheet.getCtx().getImageData(44, 33, 40, 57);
-        const frame2 = rendererAnimatedSheet.getCtx().getImageData(44, 123, 38, 56);
-        const frame3 = rendererAnimatedSheet.getCtx().getImageData(44, 213, 38, 60);
-        const frame4 = rendererAnimatedSheet.getCtx().getImageData(44, 306, 36, 57);
+        transparencyRenderer.draw(sprite);
 
-        const map = [];
-        map.push(frame1);
-        map.push(frame2);
-        map.push(frame3);
-        map.push(frame4);
+        // Load all frames in array
+        const frames = [];
 
-        const animatedSprite = new AnimatedSprite(map);
-        animatedSprite.setTransparencyColor(82, 255, 254);
+        const frame2 = sheetRenderer.getCtx().getImageData(5, 70, 42, 60);
+        const frame3 = sheetRenderer.getCtx().getImageData(5, 135, 42, 60);
+        const frame4 = sheetRenderer.getCtx().getImageData(5, 200, 42, 60);
 
+        frames.push(frame1, frame2, frame3, frame4);
+
+        // Create animated sprite
+        const animatedSprite = new AnimatedSprite(frames);
+
+        // Set transparency color
+        animatedSprite.setTransparencyColor(255, 0, 255);
+
+        // And animate it
         setInterval(() => {
-            renderFrame1.draw(animatedSprite);
+            spriteTransparencyAnimatedRenderer.draw(animatedSprite);
             animatedSprite.step();
         }, 200);
-    }
+    };
 
-    animatedImg.src = animatedSpriteSheet;
+    spriteSheet.src = sheetSrc;
 });

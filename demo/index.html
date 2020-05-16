@@ -7,22 +7,40 @@
         body {
             background-color: aliceblue;
         }
+
+        canvas {
+            border: black solid 2px;
+        }
     </style>
 </head>
 <body>
 <h1>Sprites.js</h1>
 
-<h2>Sprites sheet</h2>
-<canvas id="sprite-sheet" width="934" height="562"></canvas>
+<h2>Sheet</h2>
+<figure>
+    <canvas id="sheetCanvas" width="52" height="265"></canvas>
+    <figcaption>-</figcaption>
+</figure>
+<p>
 
+</p>
 <h2>Sprite</h2>
-<canvas id="sprite" width="64" height="80"></canvas>
+<figure>
+    <canvas id="sprite" width="42" height="60"></canvas>
+    <figcaption>-</figcaption>
+</figure>
 
-<h2>Animated Sprite sheet</h2>
-<canvas id="animated-sprite-sheet" width="829" height="921"></canvas>
+<h2>Sprite transparency</h2>
+<figure>
+    <canvas id="spriteTransparency" width="42" height="60"></canvas>
+    <figcaption>-</figcaption>
+</figure>
 
 <h2>Animated Sprite</h2>
-<canvas id="animated-sprite" width="80" height="80"></canvas>
+<figure>
+    <canvas id="spriteTransparencyAnimated" width="42" height="60"></canvas>
+    <figcaption>-</figcaption>
+</figure>
 
 <script src="../dist/demo.min.js"></script>
 </body>
