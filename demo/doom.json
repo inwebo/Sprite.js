@@ -1,0 +1,63 @@
+{
+  "tiles-1": {
+    "origin": [
+      5,
+      70
+    ],
+    "size": [
+      42,
+      60
+    ],
+    "transparency": null
+  },
+  "animation-1": {
+    "duration": 100,
+    "frames": {
+      "tiles-1": {
+        "origin": [
+          0,
+          0
+        ],
+        "size": [
+          32,
+          32
+        ],
+        "transparency": [
+          255,
+          0,
+          255
+        ]
+      },
+      "tiles-2": {
+        "origin": [
+          32,
+          32
+        ],
+        "size": [
+          32,
+          32
+        ],
+        "transparency": [
+          255,
+          0,
+          255
+        ]
+      },
+      "tiles-3": {
+        "origin": [
+          32,
+          32
+        ],
+        "size": [
+          32,
+          32
+        ],
+        "transparency": [
+          255,
+          0,
+          255
+        ]
+      }
+    }
+  }
+}
