@@ -11,4 +11,4 @@ npm install @inwebo/sprite.js
 
 ## Demo
 
-See [demo.html](./demo/index.html).
+See [demo.html](./demo/index.html) and [demo.js](./demo/demo.js).
