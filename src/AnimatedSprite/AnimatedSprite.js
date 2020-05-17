@@ -1,9 +1,12 @@
 import Sprite from "../Sprite/Sprite";
 
+/**
+ * Sprite collection to animate, may have a duration (ms).
+ */
 export default class AnimatedSprite extends Sprite {
 
     /**
-     * @return {Number|null}
+     * @return {Number|null} Time of animation (ms) or null.
      */
     getDuration() {
         return this._duration;
@@ -20,6 +23,9 @@ export default class AnimatedSprite extends Sprite {
         this._duration     = duration;
     }
 
+    /**
+     * Loop over Sprite collection
+     */
     step() {
         this._currentFrame += 1;
         if(this._currentFrame > this._map.length - 1) {

@@ -57,7 +57,7 @@ export default class Sprite {
     /**
      * Read UintArray to apply a transparency color to ImageData pixels.
      *
-     * @see https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Uint8Array
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Objets_globaux/Uint8Array
      */
     applyTransparency() {
         if(this.hasTransparencyColor()) {

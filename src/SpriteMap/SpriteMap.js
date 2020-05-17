@@ -1,6 +1,9 @@
 import Sprite from "../Sprite/Sprite";
 import AnimatedSprite from "../AnimatedSprite/AnimatedSprite";
 
+/**
+ * Utility class, will build sprites from a json file.
+ */
 export default class SpriteMap {
 
     /**
@@ -48,6 +51,9 @@ export default class SpriteMap {
         return sprite;
     }
 
+    /**
+     * Read a json file sprites map to build up sprites object.
+     */
     build() {
         for (let [name, values] of Object.entries(this._json)) {
             const isAnimated = values.duration != null;
