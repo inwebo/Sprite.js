@@ -1,6 +1,6 @@
 {
   "name": "@inwebo/sprite.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sprite management for javascript",
   "main": "/src/index.js",
   "scripts": {
@@ -25,8 +25,8 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@inwebo/render.js": "0.0.2",
-    "@inwebo/vector": "0.0.6",
+    "@inwebo/render.js": "^0.0.2",
+    "@inwebo/vector": "^0.0.6",
     "lodash": "^4.17.15"
   },
   "bugs": {
