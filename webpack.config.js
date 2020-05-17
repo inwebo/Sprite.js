@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         sprites: './src/index.js',
-        demo: './demo/demo.js'
+        demo: './docs/docs.js'
     },
     output: {
         filename: '[name].min.js',
