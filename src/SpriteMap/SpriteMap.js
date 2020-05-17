@@ -62,9 +62,9 @@ export default class SpriteMap {
                 this._map.set(name, this._buildSprite(values));
             } else {
                 const buffer = [];
-                for (let [animationName, frames] of Object.entries(values.frames)) {
-                    buffer.push(this._buildSprite(frames));
-                }
+                values.frames.forEach((sprite) => {
+                    buffer.push(this._map.get(sprite));
+                });
 
                 const animatedSprite = new AnimatedSprite(buffer, values.duration);
 

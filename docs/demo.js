@@ -64,7 +64,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     spriteSheet.src = sheetSrc;
 
-    // @todo Load Sprite map from json object
     fetch("doom.json")
         .then((response) => {
             return response.json();
@@ -77,32 +76,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
             }
         });
 
-    const satikoCanvas = new RenderSheet(document.getElementById('satikoCanvas'));
-    const satikoImg    = new Image();
-
-    satikoImg.onload = (e) => {
-
-        satikoCanvas.draw(satikoImg);
-
-        fetch("satiko.json")
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                try {
-                    const spriteMap = new SpriteMap(json, satikoCanvas.getCtx());
-                    const satikoRender = new RenderSprite(document.getElementById('satikoSprite'));
-
-                    setInterval(() => {
-                        satikoRender.draw(spriteMap.get('satiko').imgData);
-                        spriteMap.get('satiko').step();
-                    }, spriteMap.get('satiko').getDuration());
-
-                } catch (e) {
-                    console.log(e);
-                }
-            });
-    };
-
-    satikoImg.src = './satiko.png';
 });

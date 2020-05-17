@@ -1,5 +1,16 @@
 {
-  "tiles-1": {
+  "walk-1": {
+    "origin": [
+      5,
+      5
+    ],
+    "size": [
+      42,
+      60
+    ],
+    "transparency": [255, 0, 255]
+  },
+  "walk-2": {
     "origin": [
       5,
       70
@@ -8,56 +19,37 @@
       42,
       60
     ],
-    "transparency": null
+    "transparency": [255, 0, 255]
   },
-  "animation-1": {
+  "walk-3": {
+    "origin": [
+      5,
+      135
+    ],
+    "size": [
+      42,
+      60
+    ],
+    "transparency": [255, 0, 255]
+  },
+  "walk-4": {
+    "origin": [
+      5,
+      200
+    ],
+    "size": [
+      42,
+      60
+    ],
+    "transparency": [255, 0, 255]
+  },
+  "walking": {
     "duration": 100,
-    "frames": {
-      "tiles-1": {
-        "origin": [
-          0,
-          0
-        ],
-        "size": [
-          32,
-          32
-        ],
-        "transparency": [
-          255,
-          0,
-          255
-        ]
-      },
-      "tiles-2": {
-        "origin": [
-          32,
-          32
-        ],
-        "size": [
-          32,
-          32
-        ],
-        "transparency": [
-          255,
-          0,
-          255
-        ]
-      },
-      "tiles-3": {
-        "origin": [
-          32,
-          32
-        ],
-        "size": [
-          32,
-          32
-        ],
-        "transparency": [
-          255,
-          0,
-          255
-        ]
-      }
-    }
+    "frames": [
+      "walk-1",
+      "walk-2",
+      "walk-3",
+      "walk-4"
+    ]
   }
 }
