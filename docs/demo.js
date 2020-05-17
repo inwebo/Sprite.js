@@ -2,8 +2,9 @@ import RenderSheet    from "../src/RenderSheet/RenderSheet";
 import RenderSprite   from "../src/RenderSprite/RenderSprite";
 import Sprite         from "../src/Sprite/Sprite";
 import AnimatedSprite from "../src/AnimatedSprite/AnimatedSprite";
-import SpriteMap from "../src/SpriteMap/SpriteMap";
+import SpriteMap      from "../src/SpriteMap/SpriteMap";
 
+// Sheet source
 const sheetSrc    = './doom.png';
 const spriteSheet = new Image();
 
@@ -29,8 +30,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         // Pick up first frame from sheet canvas
         const frame1 = sheetRenderer.getCtx().getImageData(5, 5, 42, 60);
+        // Create sprite object
         const sprite = new Sprite(frame1);
-
+        // And draw it
         spriteRenderer.draw(sprite);
 
         // Set up transparency color
@@ -62,6 +64,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     spriteSheet.src = sheetSrc;
 
+    // @todo Load Sprite map from json object
     fetch("doom.json")
         .then((response) => {
             return response.json();
@@ -73,4 +76,33 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 console.log(e);
             }
         });
+
+    const satikoCanvas = new RenderSheet(document.getElementById('satikoCanvas'));
+    const satikoImg    = new Image();
+
+    satikoImg.onload = (e) => {
+
+        satikoCanvas.draw(satikoImg);
+
+        fetch("satiko.json")
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                try {
+                    const spriteMap = new SpriteMap(json, satikoCanvas.getCtx());
+                    const satikoRender = new RenderSprite(document.getElementById('satikoSprite'));
+
+                    setInterval(() => {
+                        satikoRender.draw(spriteMap.get('satiko').imgData);
+                        spriteMap.get('satiko').step();
+                    }, spriteMap.get('satiko').getDuration());
+
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+    };
+
+    satikoImg.src = './satiko.png';
 });
