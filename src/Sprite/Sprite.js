@@ -1,5 +1,10 @@
 import Rgb from "../Rgb/Rgb";
 
+/**
+ * Representation of a sprite as ImageData object. May manipulate pixels to apply transparency to one color.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/ImageData
+ */
 export default class Sprite {
 
     /**
@@ -25,9 +30,9 @@ export default class Sprite {
     }
 
     /**
-     * @param {Number} r
-     * @param {Number} g
-     * @param {Number} b
+     * @param {Number} r [0, 255] will be clamped if out out bounds
+     * @param {Number} g [0, 255] will be clamped if out out bounds
+     * @param {Number} b [0, 255] will be clamped if out out bounds
      */
     setTransparencyColor(r, g ,b) {
         this._transparentColor = new Rgb(r, g, b);
@@ -49,6 +54,11 @@ export default class Sprite {
         return !(this._transparentColor == null);
     }
 
+    /**
+     * Read UintArray to apply a transparency color to ImageData pixels.
+     *
+     * @see https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Uint8Array
+     */
     applyTransparency() {
         if(this.hasTransparencyColor()) {
             for (let i = 0; i < this._imgData.data.length; i += 4) {
