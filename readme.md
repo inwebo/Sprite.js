@@ -1,6 +1,6 @@
 # Sprite.js
 
-## [See the doc !](https://inwebo.github.io/Sprite.js/docs/)
+## [See the doc !](https://inwebo.github.io/Sprite.js/index.html)
 
 [javascript](https://github.com/topics/javascript), [es6-javascript](https://github.com/topics/es6-javascript), [es6](https://github.com/topics/es6), [sprite](https://github.com/topics/sprite), [spritesheet](https://github.com/topics/spritesheet)
 
