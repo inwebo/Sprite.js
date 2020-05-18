@@ -1,0 +1,9 @@
+h1 {
+    position: relative;
+}
+
+#mario-walking {
+    position: relative;
+    top: -2rem;
+    left: -2rem;
+}

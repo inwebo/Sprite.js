@@ -32,4 +32,4 @@ npm install @inwebo/sprite.js
 
 ## Demo
 
-See [index.html](https://inwebo.github.io/Sprite.js/), [demo.js](docs/demo.js), [index.html](index.html).
+See [index.html](https://inwebo.github.io/Sprite.js/), [demo.js](docs/demo.js), [index.html](docs/index.html.bak).
