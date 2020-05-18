@@ -1,5 +1,7 @@
 # Sprite.js
 
+## [See the doc !](https://inwebo.github.io/Sprite.js/docs/)
+
 [javascript](https://github.com/topics/javascript), [es6-javascript](https://github.com/topics/es6-javascript), [es6](https://github.com/topics/es6), [sprite](https://github.com/topics/sprite), [spritesheet](https://github.com/topics/spritesheet)
 
 Javascript library to manage sprites sheet, sprites, animated sprites and color transparency sprite with ease.
