@@ -2,12 +2,14 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        sprites: './src/index.js',
+        main: './src/index.js',
         demo:    './docs/demo.js',
         mario:   './docs/mario.js'
     },
     output: {
-        filename: '[name].min.js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: (pathData) => {
+            return (pathData.chunk.name === 'mario' || pathData.chunk.name === 'demo') ? 'docs/[name].min.js' : 'dist/[name].min.js';
+        },
+        path: path.resolve(__dirname, '.'),
     },
 };
