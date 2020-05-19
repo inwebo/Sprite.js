@@ -116,8 +116,7 @@
                     </ul>
                     <h3 class="sidebar-category"><a title="Sprite.js's use cases" href="#help">Help</a></h3>
                     <ul class="sidebar-links">
-                        <li><a title="Sprite.js bug report" href="#sprite-sheet-bug-report">Bug report</a></li>
-                        <li><a title="Sprite.js webography" href="#sprite-sheet-webography">Webography</a></li>
+                        <li><a title="Sprite.js bug report" href="https://github.com/inwebo/Sprite.js/issues" target="_blank">Bug report</a></li>
                         <li><a title="Sprite sheet resources" href="#sprite-sheet-assets">Assets</a></li>
                         <li><a title="Sprite sheet resources" href="#one-love">One love</a></li>
                     </ul>
@@ -209,11 +208,11 @@
                     <p>
                         Utility class, will build animated sprites from a json file map. See doom.json for information.
                     </p>
-                    <h4 id="render-sheet"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSheet/RenderSheet.js">RenderSheet.js</a></h4>
+                    <h4 id="render-sheet"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSheet/RenderSheet.js" target="_blank">RenderSheet.js</a></h4>
                     <p>
                         Utility class to draw image on canvas.
                     </p>
-                    <h4 id="render-sprite"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSprite/RenderSprite.js">RenderSprite.js</a></h4>
+                    <h4 id="render-sprite"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSprite/RenderSprite.js" target="_blank">RenderSprite.js</a></h4>
                     <p>
                         Utility class to draw image on canvas, may use Sprite transparency.
                     </p>
@@ -225,7 +224,7 @@
                     <div class="row">
                         <div class="col col-lg-1">
                             <figure>
-                                <img src="doom.png">
+                                <img src="assets/img/doom.png" />
                             </figure>
                         </div>
                         <div class="col col-lg-11">
@@ -238,44 +237,44 @@
                     <pre class=" language-javascript">
                         <code class=" language-javascript">
 
-window.addEventListener("DOMContentLoaded", (event) => {
+                            window.addEventListener("DOMContentLoaded", (event) => {
 
-    // Sheet is fully loaded callback
-    marioSheetImage.onload = (e) => {
-        // Render sheet, its pixels are now available
-        renderMarioSheetRender.draw(marioSheetImage);
+                                // Sheet is fully loaded callback
+                                marioSheetImage.onload = (e) => {
+                                    // Render sheet, its pixels are now available
+                                    renderMarioSheetRender.draw(marioSheetImage);
 
-        // Load animation config
-        fetch("mario.json")
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                try {
+                                    // Load animation config
+                                    fetch("mario.json")
+                                        .then((response) => {
+                                            return response.json();
+                                        })
+                                        .then((json) => {
+                                            try {
 
-                    const frames = [];
+                                                const frames = [];
 
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(0, 0, 16, 32));
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(17, 0, 16, 32));
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(34, 0, 16, 32));
+                                                frames.push(renderMarioSheetRender.getCtx().getImageData(0, 0, 16, 32));
+                                                frames.push(renderMarioSheetRender.getCtx().getImageData(17, 0, 16, 32));
+                                                frames.push(renderMarioSheetRender.getCtx().getImageData(34, 0, 16, 32));
 
-                    const marioWalking = new AnimatedSprite(frames);
+                                                const marioWalking = new AnimatedSprite(frames);
 
-                    // And animate it
-                    setInterval(() => {
-                        renderMarioSpriteRender.draw(marioWalking);
-                        marioWalking.step();
-                    }, 100);
+                                                // And animate it
+                                                setInterval(() => {
+                                                    renderMarioSpriteRender.draw(marioWalking);
+                                                    marioWalking.step();
+                                                }, 100);
 
-                } catch (e) {
-                    console.log(e);
-                }
-            });
+                                            } catch (e) {
+                                                console.log(e);
+                                            }
+                                        });
 
-    };
+                                };
 
-    marioSheetImage.src = sheerSrc;
-});
+                                marioSheetImage.src = sheerSrc;
+                            });
                         </code>
                     </pre>
                     <h4 id="sprite-sheet-src">How to load a sprite sheet ?</h4>
@@ -317,12 +316,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 </section>
 
                 <section id="help">
-                    <h4 id="sprite-sheet-bug-report"><a href="https://github.com/inwebo/Sprite.js/issues">Bug report</a></h4>
 
-                    <h4 id="sprite-sheet-webography">Webography</h4>
-                    <p>
-
-                    </p>
                     <h4 id="one-love">Thanks</h4>
                     <ul>
                         <li>Mustard ui</li>
