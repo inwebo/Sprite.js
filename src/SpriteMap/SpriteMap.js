@@ -55,18 +55,26 @@ export default class SpriteMap {
      * Read a json file sprites map to build up sprites object.
      */
     build() {
-        for (let [name, values] of Object.entries(this._json)) {
-            const isAnimated = values.duration != null;
+        const frames     = this._json.frames;
+        const animations = this._json.animations;
 
-            if(!isAnimated) {
+        if(frames !== undefined) {
+            for (let [name, values] of Object.entries(frames)) {
                 this._map.set(name, this._buildSprite(values));
-            } else {
-                const buffer = [];
-                values.frames.forEach((sprite) => {
-                    buffer.push(this._map.get(sprite));
+            }
+        }
+
+        if(animations !== undefined) {
+            for (let [name, values] of Object.entries(animations)) {
+                const duration = values.duration;
+                const frames   = values.frames;
+                const buffer   = [];
+
+                frames.forEach((frameName) => {
+                    buffer.push(this.get(frameName).imgData);
                 });
 
-                const animatedSprite = new AnimatedSprite(buffer, values.duration);
+                const animatedSprite = new AnimatedSprite(buffer, duration);
 
                 this._map.set(name, animatedSprite);
             }

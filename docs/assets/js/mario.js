@@ -1,14 +1,15 @@
-import RenderSheet from "../src/RenderSheet/RenderSheet";
-import SpriteMap from "../src/SpriteMap/SpriteMap";
-import AnimatedSprite from "../src/AnimatedSprite/AnimatedSprite";
-import RenderSprite from "../src/RenderSprite/RenderSprite";
+import RenderSheet  from '../../../src/RenderSheet/RenderSheet'
+import RenderSprite from '../../../src/RenderSprite/RenderSprite';
+import SpriteMap    from '../../../src/SpriteMap/SpriteMap';
 
 // Prepare canvas
 const renderMarioSheetRender  = new RenderSheet(document.getElementById('mario-sheet'));
 const renderMarioSpriteRender = new RenderSprite(document.getElementById('mario-walking'));
 
+
+
 // Sheet src
-const sheerSrc        = './mario.png';
+const sheerSrc        = 'assets/img/mario.png';
 const marioSheetImage = new Image();
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -19,26 +20,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
         renderMarioSheetRender.draw(marioSheetImage);
 
         // Load animation config
-        fetch("mario.json")
+        fetch("assets/img/mario.json")
             .then((response) => {
                 return response.json();
             })
             .then((json) => {
                 try {
-
-                    const frames = [];
-
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(0, 0, 16, 32));
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(17, 0, 16, 32));
-                    frames.push(renderMarioSheetRender.getCtx().getImageData(34, 0, 16, 32));
-
-                    const marioWalking = new AnimatedSprite(frames);
-
+                    const spriteMap = new SpriteMap(json, renderMarioSheetRender.getCtx());
+                    const mario     = spriteMap.get('walking');
                     // And animate it
                     setInterval(() => {
-                        renderMarioSpriteRender.draw(marioWalking);
-                        marioWalking.step();
-                    }, 100);
+                        renderMarioSpriteRender.draw(mario);
+                        mario.step();
+                    }, mario.getDuration());
 
                 } catch (e) {
                     console.log(e);

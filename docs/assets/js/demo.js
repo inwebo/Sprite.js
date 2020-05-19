@@ -1,8 +1,8 @@
-import RenderSheet    from "../src/RenderSheet/RenderSheet";
-import RenderSprite   from "../src/RenderSprite/RenderSprite";
-import Sprite         from "../src/Sprite/Sprite";
-import AnimatedSprite from "../src/AnimatedSprite/AnimatedSprite";
-import SpriteMap      from "../src/SpriteMap/SpriteMap";
+import RenderSheet    from '../../../src/RenderSheet/RenderSheet'
+import RenderSprite   from '../../../src/RenderSprite/RenderSprite';
+import SpriteMap      from '../../../src/SpriteMap/SpriteMap';
+import Sprite         from '../../../src/Sprite/Sprite';
+import AnimatedSprite from '../../../src/AnimatedSprite/AnimatedSprite';
 
 // Sheet source
 const sheetSrc    = './doom.png';
