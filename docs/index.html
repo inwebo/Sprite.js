@@ -193,27 +193,27 @@
                 </section>
 
                 <section id="class">
-                    <h4 id="sprite-js">Sprite.js</h4>
+                    <h4 id="sprite-js"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/Sprite/Sprite.js" target="_blank">Sprite.js</a></h4>
                     <p>
                         Representation of a sprite as ImageData object. May manipulate pixels to apply transparency to one color.
                     </p>
-                    <h4 id="rgb">Rgb.js</h4>
+                    <h4 id="rgb"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/Rgb/Rgb.js" target="_blank">Rgb.js</a></h4>
                     <p>
                         Utility class, representation of RGB color.
                     </p>
-                    <h4 id="animated-sprite">AnimatedSprite.js</h4>
+                    <h4 id="animated-sprite"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/AnimatedSprite/AnimatedSprite.js" target="_blank">AnimatedSprite.js</a></h4>
                     <p>
                         Sprite collection to animate, may have a duration (ms).
                     </p>
-                    <h4 id="sprite-map">SpriteMap.js</h4>
+                    <h4 id="sprite-map"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/SpriteMap/SpriteMap.js" target="_blank">SpriteMap.js</a></h4>
                     <p>
                         Utility class, will build animated sprites from a json file map. See doom.json for information.
                     </p>
-                    <h4 id="render-sheet">RenderSheet.js</h4>
+                    <h4 id="render-sheet"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSheet/RenderSheet.js">RenderSheet.js</a></h4>
                     <p>
                         Utility class to draw image on canvas.
                     </p>
-                    <h4 id="render-sprite">RenderSprite.js</h4>
+                    <h4 id="render-sprite"><a href="https://github.com/inwebo/Sprite.js/blob/master/src/RenderSprite/RenderSprite.js">RenderSprite.js</a></h4>
                     <p>
                         Utility class to draw image on canvas, may use Sprite transparency.
                     </p>
@@ -221,9 +221,63 @@
 
                 <section id="demos">
                     <h4 id="bootstrap-sprite-js">How to bootstrap your project ?</h4>
-                    <p>
+                    <h5>Download and map a sprite sheet</h5>
+                    <div class="row">
+                        <div class="col col-lg-1">
+                            <figure>
+                                <img src="doom.png">
+                            </figure>
+                        </div>
+                        <div class="col col-lg-11">
+                            This is our sprite sheet rendered on canvas. Its dimensensions are, <code>widht = 52px</code>,
+                            <code>height: 265px</code>. It contains 4 frames, each frames got same dimension, <code>widht = 42px</code> and
+                            <code>height: 60px</code>, the transparency color is <code>rgb(255, 0, 255)</code>.
+                            Origins : Sheet origin<code>0, 0 (top left corner)</code>, <code>Frame 1: 5, 5</code>, <code>Frame 2: 5, 70</code>, <code>Frame 3: 5, 135</code>, <code>Frame 4: 5, 200</code>.
+                        </div>
+                    </div>
+                    <pre class=" language-javascript">
+                        <code class=" language-javascript">
 
-                    </p>
+window.addEventListener("DOMContentLoaded", (event) => {
+
+    // Sheet is fully loaded callback
+    marioSheetImage.onload = (e) => {
+        // Render sheet, its pixels are now available
+        renderMarioSheetRender.draw(marioSheetImage);
+
+        // Load animation config
+        fetch("mario.json")
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                try {
+
+                    const frames = [];
+
+                    frames.push(renderMarioSheetRender.getCtx().getImageData(0, 0, 16, 32));
+                    frames.push(renderMarioSheetRender.getCtx().getImageData(17, 0, 16, 32));
+                    frames.push(renderMarioSheetRender.getCtx().getImageData(34, 0, 16, 32));
+
+                    const marioWalking = new AnimatedSprite(frames);
+
+                    // And animate it
+                    setInterval(() => {
+                        renderMarioSpriteRender.draw(marioWalking);
+                        marioWalking.step();
+                    }, 100);
+
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+
+    };
+
+    marioSheetImage.src = sheerSrc;
+});
+                        </code>
+                    </pre>
                     <h4 id="sprite-sheet-src">How to load a sprite sheet ?</h4>
                     <p>
 
@@ -263,22 +317,13 @@
                 </section>
 
                 <section id="help">
-                    <h4 id="sprite-sheet-bug-report">Bug report</h4>
-                    <p>
-
-                    </p>
+                    <h4 id="sprite-sheet-bug-report"><a href="https://github.com/inwebo/Sprite.js/issues">Bug report</a></h4>
 
                     <h4 id="sprite-sheet-webography">Webography</h4>
                     <p>
-♥
-                    </p>
-
-                    <h4 id="sprite-sheet-assets">Need assets ?</h4>
-                    <p>
 
                     </p>
-
-                    <h4 id="one-love">One ♥</h4>
+                    <h4 id="one-love">Thanks</h4>
                     <ul>
                         <li>Mustard ui</li>
                     </ul>
