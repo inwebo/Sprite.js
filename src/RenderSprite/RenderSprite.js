@@ -1,4 +1,4 @@
-import Renderer2D from "@inwebo/render.js/src/Renderer2D";
+import { Renderer2D } from "@inwebo/render.js";
 
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData
