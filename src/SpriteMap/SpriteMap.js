@@ -39,7 +39,7 @@ export default class SpriteMap {
     _buildSprite(value) {
         const imageData = this
             ._context
-            .getImageData(value.origin[0], value.origin[1], value.size[0], value.size[1])
+            .getImageData(value.origin[0], value.origin[1], value.dimensions[0], value.dimensions[1])
         ;
 
         const sprite = new Sprite(imageData);
