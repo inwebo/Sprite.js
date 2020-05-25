@@ -1,6 +1,6 @@
 {
   "name": "@inwebo/sprite.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Sprite management for javascript",
   "main": "/src/index.js",
   "scripts": {
