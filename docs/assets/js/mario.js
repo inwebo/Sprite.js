@@ -1,45 +1,27 @@
-import RenderSheet  from '../../../src/RenderSheet/RenderSheet'
-import RenderSprite from '../../../src/RenderSprite/RenderSprite';
-import SpriteMap    from '../../../src/SpriteMap/SpriteMap';
-
-// Prepare canvas
-const renderMarioSheetRender  = new RenderSheet(document.getElementById('mario-sheet'));
-const renderMarioSpriteRender = new RenderSprite(document.getElementById('mario-walking'));
-
-
-
-// Sheet src
-const sheerSrc        = 'assets/img/mario.png';
-const marioSheetImage = new Image();
+import RenderSprite      from '../../../src/RenderSprite/RenderSprite';
+import SpriteMap         from '../../../src/SpriteMap/SpriteMap';
+import {AssetsLoader}    from '@inwebo/assetsloader.js';
+import {RenderOffScreen} from '@inwebo/render.js';
 
 window.addEventListener("DOMContentLoaded", (event) => {
 
-    // Sheet is fully loaded callback
-    marioSheetImage.onload = (e) => {
-        // Render sheet, its pixels are now available
-        renderMarioSheetRender.draw(marioSheetImage);
+    const marioSheet              = AssetsLoader.image('assets/img/mario.png');
+    const marioJSONMap            = AssetsLoader.json('assets/img/mario.json');
+    const renderMarioSpriteRender = new RenderSprite(document.getElementById('mario-walking'));
 
-        // Load animation config
-        fetch("assets/img/mario.json")
-            .then((response) => {
-                return response.json();
-            })
-            .then((json) => {
-                try {
-                    const spriteMap = new SpriteMap(json, renderMarioSheetRender.getCtx());
-                    const mario     = spriteMap.get('walking');
-                    // And animate it
-                    setInterval(() => {
-                        renderMarioSpriteRender.draw(mario);
-                        mario.step();
-                    }, mario.getDuration());
+    Promise.all([marioSheet, marioJSONMap])
+        .then(([marioSheet, marioJSONMap]) => {
 
-                } catch (e) {
-                    console.log(e);
-                }
-            });
+            const marioSheetOffScreenRenderer = new RenderOffScreen(document.getElementById('mario-walking'), marioSheet);
+            const spriteMap = new SpriteMap(marioJSONMap, marioSheetOffScreenRenderer.getCtx());
+            const mario     = spriteMap.get('walking');
 
-    };
-
-    marioSheetImage.src = sheerSrc;
+            setInterval(() => {
+                renderMarioSpriteRender.draw(mario);
+                mario.step();
+            }, mario.getDuration());
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 });
