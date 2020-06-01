@@ -1,5 +1,5 @@
 {
-  "frames": {
+  "tiles": {
     "walk-1": {
       "origin": [5, 5],
       "dimensions": [42, 60],
@@ -27,7 +27,7 @@
   "animations" : {
     "walking": {
       "duration": 100,
-      "frames": [
+      "tiles": [
         "walk-1",
         "walk-2",
         "walk-3",
