@@ -52,14 +52,14 @@ export default class SpriteMap {
     }
 
     /**
-     * Read a json file sprites map to build up sprites object.
+     * Parse a json file sprites map to build up sprites object.
      */
     build() {
-        const frames     = this._json.frames;
+        const tiles      = this._json.tiles;
         const animations = this._json.animations;
 
-        if(frames !== undefined) {
-            for (let [name, values] of Object.entries(frames)) {
+        if(tiles !== undefined) {
+            for (let [name, values] of Object.entries(tiles)) {
                 this._map.set(name, this._buildSprite(values));
             }
         }
@@ -67,10 +67,10 @@ export default class SpriteMap {
         if(animations !== undefined) {
             for (let [name, values] of Object.entries(animations)) {
                 const duration = values.duration;
-                const frames   = values.frames;
+                const tiles   = values.tiles;
                 const buffer   = [];
 
-                frames.forEach((frameName) => {
+                tiles.forEach((frameName) => {
                     buffer.push(this.get(frameName).imgData);
                 });
 
