@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         frames.push(frame1, frame2, frame3, frame4);
 
         // Create animated sprite
-        const animatedSprite = new AnimatedSprite(frames);
+        const animatedSprite = new AnimatedSprite(frames, 100);
 
         // Set transparency color
         animatedSprite.setTransparencyColor(255, 0, 255);
@@ -64,16 +64,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     spriteSheet.src = sheetSrc;
 
-    fetch("doom.json")
-        .then((response) => {
-            return response.json();
-        })
-        .then((json) => {
-            try {
-                const spriteMap = new SpriteMap(json, sheetRenderer.getCtx());
-            } catch (e) {
-                console.log(e);
-            }
-        });
+    // fetch("doom.json")
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((json) => {
+    //         try {
+    //             const spriteMap = new SpriteMap(json, sheetRenderer.getCtx());
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     });
 
 });
