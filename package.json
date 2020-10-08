@@ -28,8 +28,8 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@inwebo/vector": "^0.0",
-    "@inwebo/render.js": "^0.0"
+    "@inwebo/render.js": "^0.0",
+    "@inwebo/vector": "^0.0"
   },
   "bugs": {
     "url": "https://github.com/inwebo/Sprite.js/issues"
