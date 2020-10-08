@@ -1,6 +1,33 @@
 import { Vector2D } from "@inwebo/vector";
 
+/**
+ * Basic RGB representation.
+ *
+ * this._x = R, this._y = G, this._z = B
+ * If R | G | B greater than 255 they will be clamped at 255.
+ */
 export default class Rgb extends Vector2D {
+
+    /**
+     * @return {number} [0, 255]
+     */
+    getRed() {
+        return super.getX();
+    }
+
+    /**
+     * @return {number} [0, 255]
+     */
+    getGreen() {
+        return super.getY();
+    }
+
+    /**
+     * @return {number} [0, 255]
+     */
+    getBlue() {
+        return this._z;
+    }
 
     /**
      * @param {Number} value
@@ -17,9 +44,9 @@ export default class Rgb extends Vector2D {
     }
 
     /**
-     * @param {Number} x
-     * @param {Number} y
-     * @param {Number} z
+     * @param {Number} x R
+     * @param {Number} y G
+     * @param {Number} z B
      */
     constructor(x = 0, y = 0, z = 0) {
         super(x, y);
