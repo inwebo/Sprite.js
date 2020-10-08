@@ -4,14 +4,31 @@ import Sprite from "../Sprite/Sprite";
  * Sprites collection to animate.
  */
 export default class AnimatedSprite extends Sprite {
+
+    /**
+     * @return {Number}
+     */
+    getLoopDuration() {
+        return this._loopDuration;
+    }
+
+    /**
+     * @return {Number}
+     */
+    getCurrentFrame() {
+        return this._currentFrame;
+    }
+
     /**
      * @param {[ImageData]} map
-     * @param {Number|null} duration
+     * @param {Number} loopDuration
+     * @param {Number} startingFrame
      */
-    constructor(map, duration) {
+    constructor(map, loopDuration, startingFrame = 0) {
         super(map[0]);
         this._map          = map;
-        this._currentFrame = 0;
+        this._loopDuration = loopDuration;
+        this._currentFrame = startingFrame;
     }
 
     /**
