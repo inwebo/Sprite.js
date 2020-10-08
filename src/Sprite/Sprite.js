@@ -1,9 +1,15 @@
 import Rgb from "../Rgb/Rgb";
+import {Vector2D} from "@inwebo/vector";
 
 /**
- * Representation of a sprite as ImageData object. May manipulate pixels to apply transparency to one color.
+ * Representation of a sprite as ImageData object.
+ *
+ * A sprite HAS an imageData
+ * A sprite HAS an origin (NE=0, N=1, NW=2, W=3, SW=4, S=5, SE=6, NE=7) default 0
+ * A sprite MAY have a transparency colour, it s a Rgb() instance
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/API/ImageData
+ * @see https://github.com/inwebo/Sprite.js/blob/master/src/Rgb/Rgb.js
  */
 export default class Sprite {
 
@@ -22,10 +28,13 @@ export default class Sprite {
     }
 
     /**
-     * @param {ImageData} imgData
+     * @param {ImageData}   imgData
+     * @param {number|null} origin (NE=0, N=1, NW=2, W=3, SW=4, S=5, SE=6, NE=7)
+     * @param {Rgb|null}    transparentColor
      */
-    constructor(imgData) {
+    constructor(imgData, origin = null, transparentColor = null) {
         this._imgData          = imgData;
+        this._origin           = origin || 0;
         this._transparentColor = null;
     }
 
@@ -51,7 +60,7 @@ export default class Sprite {
      * @return {boolean}
      */
     hasTransparencyColor() {
-        return !(this._transparentColor == null);
+        return !(this._transparentColor === null);
     }
 
     /**
@@ -67,6 +76,80 @@ export default class Sprite {
                     this._imgData.data[i + 3] = 0;
                 }
             }
+        }
+    }
+
+    /**
+     * Validate instance origin
+     * @return {boolean}
+     */
+    validateOrigin() {
+        return this._validateOrigin(this._origin);
+    }
+
+    /**
+     * Validate an origin
+     * @param {Number} origin
+     * @return {boolean}
+     * @private
+     */
+    _validateOrigin(origin) {
+        if(Number.isInteger(origin)) {
+            if(origin <= 7) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param {Number} origin (NE=0, N=1, NW=2, W=3, SW=4, S=5, SE=6, E=7)
+     */
+    setOrigin(origin = 0) {
+        if(this._validateOrigin(origin)) {
+            this._origin = origin;
+        } else {
+            throw `origin ${origin} : MUST BE AN INTEGER (is ${typeof origin}) lower or equal than 7.`;
+        }
+    }
+
+    /**
+     * Return relative coordinates from a pivot point this._origin (NE=0, N=1, NW=2, W=3, SW=4, S=5, SE=6, E=7).
+     *
+     * @return {Vector2D}
+     */
+    getCenter() {
+        const width  = Math.round(this._imgData.width);
+        const height = Math.round(this._imgData.height);
+
+        switch (this._origin) {
+            // North east
+            case 0:
+                return new Vector2D(0, 0);
+            // North
+            case 1:
+                return new Vector2D(Math.round(width/2), 0);
+            // North west
+            case 2:
+                return new Vector2D(width, 0);
+            // West
+            case 3:
+                return new Vector2D(width, Math.round(height/2));
+            // South west
+            case 4:
+                return new Vector2D(width, height);
+            // South
+            case 5:
+                return new Vector2D(Math.round(width/2), height);
+            // South east
+            case 6:
+                return new Vector2D(0, height);
+            // East
+            case 7:
+                return new Vector2D(0, Math.round(height/2));
+            default:
+                throw `this._origin=${this._origin} : MUST BE AN INTEGER lower or equal than 7. Use Sprite.setOrigin() !`;
         }
     }
 }
