@@ -18,7 +18,7 @@
   },
   "animations" : {
     "walking": {
-      "duration": 150,
+      "loopDuration": 150,
       "tiles": [
         "mario-1",
         "mario-2",

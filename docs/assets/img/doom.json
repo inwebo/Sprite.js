@@ -26,7 +26,7 @@
   },
   "animations" : {
     "walking": {
-      "duration": 100,
+      "loopDuration": 100,
       "tiles": [
         "walk-1",
         "walk-2",
