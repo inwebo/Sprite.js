@@ -7,10 +7,10 @@ import AnimatedSprite from "../AnimatedSprite/AnimatedSprite";
 export default class SpriteMap {
 
     /**
-     * @return {Map}
+     * @return {Map<string, Sprite>}
      */
-    getMap() {
-        return this._map;
+    getSpritesMap() {
+        return this._spritesMap;
     }
 
     /**
@@ -18,7 +18,7 @@ export default class SpriteMap {
      * @return {Sprite|AnimatedSprite}
      */
     get(spriteName) {
-        return this._map.get(spriteName);
+        return this._spritesMap.get(spriteName);
     }
 
     /**
@@ -26,17 +26,26 @@ export default class SpriteMap {
      * @param {CanvasRenderingContext2D} context Original canvas context
      */
     constructor(json, context) {
-        this._json      = json;
-        this._context   = context;
-        this._map       = new Map();
-        this.build();
+        this._json       = json;
+        this._context    = context;
+        this._spritesMap = new Map();
+        this._build();
     }
 
     /**
      * @param {Object} value
      * @return {Sprite}
+     * @private
      */
     _buildSprite(value) {
+        if(!Array.isArray(value.dimensions)) {
+            throw "Json dimensions entry MUST BE AN array is `${type of value.dimensions}`";
+        } else {
+            if(value.dimensions[0] === undefined || value.dimensions[1] === undefined) {
+                throw "Json dimension[0] or Json dimension[1] is mandatory";
+            }
+        }
+
         const imageData = this
             ._context
             .getImageData(value.origin[0], value.origin[1], value.dimensions[0], value.dimensions[1])
@@ -53,20 +62,21 @@ export default class SpriteMap {
 
     /**
      * Parse a json file sprites map to build up sprites object.
+     * @private
      */
-    build() {
+    _build() {
         const tiles      = this._json.tiles;
         const animations = this._json.animations;
 
         if(tiles !== undefined) {
             for (let [name, values] of Object.entries(tiles)) {
-                this._map.set(name, this._buildSprite(values));
+                this._spritesMap.set(name, this._buildSprite(values));
             }
         }
 
         if(animations !== undefined) {
             for (let [name, values] of Object.entries(animations)) {
-                const duration = values.duration;
+                const loopDuration = values.loopDuration;
                 const tiles   = values.tiles;
                 const buffer   = [];
 
@@ -74,9 +84,9 @@ export default class SpriteMap {
                     buffer.push(this.get(frameName).imgData);
                 });
 
-                const animatedSprite = new AnimatedSprite(buffer, duration);
+                const animatedSprite = new AnimatedSprite(buffer, loopDuration);
 
-                this._map.set(name, animatedSprite);
+                this.getSpritesMap().set(name, animatedSprite);
             }
         }
     }
