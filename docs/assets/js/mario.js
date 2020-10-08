@@ -13,13 +13,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
         .then(([marioSheet, marioJSONMap]) => {
 
             const marioSheetOffScreenRenderer = new RenderOffScreen(document.getElementById('mario-walking'), marioSheet);
-            const spriteMap = new SpriteMap(marioJSONMap, marioSheetOffScreenRenderer.getCtx());
-            const mario     = spriteMap.get('walking');
+            const spriteMap    = new SpriteMap(marioJSONMap, marioSheetOffScreenRenderer.getCtx());
+            /**
+             * @type {AnimatedSprite}
+             */
+            const marioWalking = spriteMap.get('walking');
 
             setInterval(() => {
-                renderMarioSpriteRender.draw(mario);
-                mario.step();
-            }, mario.getDuration());
+                renderMarioSpriteRender.draw(marioWalking);
+                marioWalking.step();
+            }, marioWalking.getLoopDuration());
         })
         .catch((e) => {
             console.log(e);
