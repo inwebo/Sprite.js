@@ -1,17 +1,9 @@
 import Sprite from "../Sprite/Sprite";
 
 /**
- * Sprite collection to animate, may have a duration (ms).
+ * Sprites collection to animate.
  */
 export default class AnimatedSprite extends Sprite {
-
-    /**
-     * @return {Number|null} Time of animation (ms) or null.
-     */
-    getDuration() {
-        return this._duration;
-    }
-
     /**
      * @param {[ImageData]} map
      * @param {Number|null} duration
@@ -20,7 +12,6 @@ export default class AnimatedSprite extends Sprite {
         super(map[0]);
         this._map          = map;
         this._currentFrame = 0;
-        this._duration     = duration;
     }
 
     /**
