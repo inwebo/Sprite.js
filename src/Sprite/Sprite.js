@@ -120,8 +120,8 @@ export default class Sprite {
      * @return {Vector2D}
      */
     getCenter() {
-        const width  = Math.round(this._imgData.width);
-        const height = Math.round(this._imgData.height);
+        const width  = (this._imgData.width  % 2 !== 0)  ? this._imgData.width - 1  : this._imgData.width;
+        const height = (this._imgData.height % 2 !== 0)  ? this._imgData.height - 1 : this._imgData.height;
 
         switch (this._origin) {
             // North east
@@ -129,25 +129,25 @@ export default class Sprite {
                 return new Vector2D(0, 0);
             // North
             case 1:
-                return new Vector2D(Math.round(width/2), 0);
+                return new Vector2D(width/2, 0);
             // North west
             case 2:
                 return new Vector2D(width, 0);
             // West
             case 3:
-                return new Vector2D(width, Math.round(height/2));
+                return new Vector2D(width, height/2);
             // South west
             case 4:
                 return new Vector2D(width, height);
             // South
             case 5:
-                return new Vector2D(Math.round(width/2), height);
+                return new Vector2D(width/2, height);
             // South east
             case 6:
                 return new Vector2D(0, height);
             // East
             case 7:
-                return new Vector2D(0, Math.round(height/2));
+                return new Vector2D(0, height/2);
             default:
                 throw `this._origin=${this._origin} : MUST BE AN INTEGER lower or equal than 7. Use Sprite.setOrigin() !`;
         }
